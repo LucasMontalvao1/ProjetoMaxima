@@ -1,0 +1,60 @@
+1 - criar o banco de dados mysql com as seguintes informaçoes:
+
+string connectionString = "server=localhost;userid=root;password=asd123;database=maxima";
+
+2 - Criar estrutura do banco executando o script abaixo no mysql.
+
+-- Tabela Produtos
+CREATE TABLE produtos (
+    ID INT PRIMARY KEY,
+    Código VARCHAR(255),
+    Descrição VARCHAR(255),
+    CodigoDepartamento VARCHAR(255),
+    Preço DECIMAL(10, 2),
+    Status BOOLEAN,
+    Inutilizavel BOOLEAN
+);
+
+-- Tabela Departamentos
+CREATE TABLE departamentos (
+    Codigo VARCHAR(255) PRIMARY KEY,
+    Descricao VARCHAR(255)
+);
+
+-- Tabela Users
+
+CREATE TABLE users(
+    Id INT PRIMARY KEY,
+    Username VARCHAR(255),
+    Password VARCHAR(255)
+);
+
+3 - adicionar registros no banco
+
+INSERT INTO produtos (ID, Código, Descrição, CodigoDepartamento, Preço, Status, Inutilizavel) 
+VALUES 
+(1, 'PROD001', 'Refrigerante', '010', 25.99, TRUE, FALSE),
+(2, 'PROD002', 'Cerveja', '010', 59.99, TRUE, FALSE),
+(3, 'PROD003', 'Frango', '020', 79.99, TRUE, FALSE),
+(4, 'PROD004', 'Leite', '030', 39.99, TRUE, FALSE),
+(5, 'PROD005', 'Cenoura', '040', 29.99, TRUE, FALSE);
+
+INSERT INTO departamentos (Codigo, Descricao)
+VALUES 
+('010', 'BEBIDAS'),
+('020', 'CONGELADOS'),
+('030', 'LATICINIOS'),
+('040', 'VEGETAIS');
+
+INSERT INTO users (Id, Username, Password)
+VALUES 
+(1, 'usuario1', 'senha123'),
+(2, 'usuario2', 'abc123'),
+(3, 'admin', 'admin123');
+
+
+
+4 - Abrir projeto ApiMaxima rodando comando "dotnet run" no CMD.
+5 - Abrir projeto ProjetoMaxima rodando comando "dotnet run" no CMD.
+
+

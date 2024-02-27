@@ -1,0 +1,56 @@
+﻿@model ProjetoMaxima.Models.Produto;
+
+@{
+    ViewData["Title"] = "Excluir Produto";
+}
+
+<h2>@ViewData["Title"]</h2>
+<h1></h1>
+<div>
+    <h4>Detalhes do Produto</h4>
+    <hr />
+    <dl class="row">
+        <dt class="col-sm-3">
+            @Html.DisplayNameFor(model => model.ID)
+        </dt>
+        <dd class="col-sm-9">
+            @Html.DisplayFor(model => model.ID)
+        </dd>
+        <dt class="col-sm-3">
+            @Html.DisplayNameFor(model => model.Codigo)
+        </dt>
+        <dd class="col-sm-9">
+            @Html.DisplayFor(model => model.Codigo)
+        </dd>
+        <dt class="col-sm-3">
+            @Html.DisplayNameFor(model => model.Descricao)
+        </dt>
+        <dd class="col-sm-9">
+            @Html.DisplayFor(model => model.Descricao)
+        </dd>
+        <dt class="col-sm-3">
+            @Html.DisplayNameFor(model => model.Preco)
+        </dt>
+        <dd class="col-sm-9">
+            @Html.DisplayFor(model => model.Preco)
+        </dd>
+        <dt class="col-sm-3">
+            @Html.DisplayNameFor(model => model.Status)
+        </dt>
+        <dd class="col-sm-9">
+            @Html.DisplayFor(model => model.Status)
+        </dd>
+        <dt class="col-sm-3">
+            @Html.DisplayNameFor(model => model.Inutilizavel)
+        </dt>
+        <dd class="col-sm-9">
+            @Html.DisplayFor(model => model.Inutilizavel)
+        </dd>
+    </dl>
+
+    <form asp-action="Delete">
+        <input type="hidden" asp-for="ID" />
+        <input type="submit" value="Excluir" class="btn btn-danger" />
+        <a asp-action="Index" class="btn btn-secondary">Voltar para a listagem de produtos</a>
+    </form>
+</div>

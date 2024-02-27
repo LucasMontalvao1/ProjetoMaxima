@@ -1,0 +1,32 @@
+﻿@model ProjetoMaxima.Models.Departamento
+
+@{
+    ViewData["Title"] = "Excluir Departamento";
+}
+
+<h2>@ViewData["Title"]</h2>
+
+<div>
+    <h4>Detalhes do Departamento</h4>
+    <hr />
+    <dl class="row">
+        <dt class="col-sm-3">
+            @Html.DisplayNameFor(model => model.Codigo)
+        </dt>
+        <dd class="col-sm-9">
+            @Html.DisplayFor(model => model.Codigo)
+        </dd>
+        <dt class="col-sm-3">
+            @Html.DisplayNameFor(model => model.Descricao)
+        </dt>
+        <dd class="col-sm-9">
+            @Html.DisplayFor(model => model.Descricao)
+        </dd>
+    </dl>
+
+    <form asp-action="Delete">
+        <input type="hidden" asp-for="Codigo" />
+        <input type="submit" value="Excluir" class="btn btn-danger" />
+        <a asp-action="Index" class="btn btn-secondary">Voltar para a listagem de departamentos</a>
+    </form>
+</div>

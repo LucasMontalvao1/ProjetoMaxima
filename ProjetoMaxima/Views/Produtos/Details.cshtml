@@ -1,0 +1,62 @@
+﻿@model ProjetoMaxima.Models.Produto;
+
+@{
+    ViewData["Title"] = "Detalhes do Produto";
+}
+
+<h2>@ViewData["Title"]</h2>
+
+<div class="card">
+    <div class="card-body">
+        <dl class="row">
+            <dt class="col-sm-3">
+                @Html.DisplayNameFor(model => model.ID)
+            </dt>
+            <dd class="col-sm-9">
+                @Html.DisplayFor(model => model.ID)
+            </dd>
+            <dt class="col-sm-3">
+                @Html.DisplayNameFor(model => model.Codigo)
+            </dt>
+            <dd class="col-sm-9">
+                @Html.DisplayFor(model => model.Codigo)
+            </dd>
+            <dt class="col-sm-3">
+                @Html.DisplayNameFor(model => model.Descricao)
+            </dt>
+            <dd class="col-sm-9">
+                @Html.DisplayFor(model => model.Descricao)
+            </dd>
+            <dt class="col-sm-3">
+                @Html.DisplayNameFor(model => model.DepartamentoCodigo)
+            </dt>
+            <dd class="col-sm-9">
+                @Html.DisplayFor(model => model.DepartamentoCodigo)
+            </dd>
+            <dt class="col-sm-3">
+                @Html.DisplayNameFor(model => model.Preco)
+            </dt>
+            <dd class="col-sm-9">
+                @Html.DisplayFor(model => model.Preco)
+            </dd>
+            <dt class="col-sm-3">
+                @Html.DisplayNameFor(model => model.Status)
+            </dt>
+            <dd class="col-sm-9">
+                @Html.DisplayFor(model => model.Status)
+            </dd>
+            <dt class="col-sm-3">
+                @Html.DisplayNameFor(model => model.Inutilizavel)
+            </dt>
+            <dd class="col-sm-9">
+                @Html.DisplayFor(model => model.Inutilizavel)
+            </dd>
+        </dl>
+    </div>
+</div>
+
+<div class="mt-3">
+    <a asp-action="Edit" asp-route-id="@Model.ID" class="btn btn-primary">Editar</a>
+    <a asp-action="Delete" asp-route-id="@Model.ID" class="btn btn-danger">Deletar</a>
+    <a asp-action="Index" class="btn btn-secondary">Voltar para a listagem</a>
+</div>
