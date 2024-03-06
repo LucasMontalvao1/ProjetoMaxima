@@ -58,3 +58,10 @@ C:\dev\Maxima\ApiMaxima\obj\Debug\net6.0\refint\ApiMaxima.dll
 C:\dev\Maxima\ApiMaxima\obj\Debug\net6.0\ApiMaxima.pdb
 C:\dev\Maxima\ApiMaxima\obj\Debug\net6.0\ApiMaxima.genruntimeconfig.cache
 C:\dev\Maxima\ApiMaxima\obj\Debug\net6.0\ref\ApiMaxima.dll
+C:\dev\Maxima\ApiMaxima\obj\Debug\net6.0\ApiMaxima.sourcelink.json
+C:\dev\Maxima\ApiMaxima\bin\Debug\net6.0\System.Net.Http.Formatting.dll
+C:\dev\Maxima\ApiMaxima\bin\Debug\net6.0\System.Web.Http.dll
+C:\dev\Maxima\ApiMaxima\bin\Debug\net6.0\Newtonsoft.Json.dll
+C:\dev\Maxima\ApiMaxima\bin\Debug\net6.0\NSwag.Annotations.dll
+C:\dev\Maxima\ApiMaxima\bin\Debug\net6.0\Swashbuckle.AspNetCore.Annotations.dll
+C:\dev\Maxima\ApiMaxima\bin\Debug\net6.0\Swashbuckle.Core.dll

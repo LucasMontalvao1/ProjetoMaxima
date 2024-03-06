@@ -1,5 +1,8 @@
-﻿using System;
+﻿// DepartamentoService.cs
+
+using System;
 using System.Collections.Generic;
+using System.Threading.Tasks;
 using MySql.Data.MySqlClient;
 using ApiMaxima.Models;
 
@@ -40,6 +43,32 @@ namespace ApiMaxima.Services
                 }
             }
             return departamentos;
+        }
+
+        public Departamento ObterDepartamentoPorCodigo(string codigo)
+        {
+            using (MySqlConnection connection = _mySqlConnectionDB.CreateConnection())
+            {
+                string query = "SELECT * FROM Departamentos WHERE Codigo = @Codigo";
+                using (MySqlCommand command = new MySqlCommand(query, connection))
+                {
+                    command.Parameters.AddWithValue("@Codigo", codigo);
+                    connection.Open();
+                    using (MySqlDataReader reader = command.ExecuteReader())
+                    {
+                        if (reader.Read())
+                        {
+                            Departamento departamento = new Departamento
+                            {
+                                Codigo = reader["Codigo"].ToString(),
+                                Descricao = reader["Descricao"].ToString()
+                            };
+                            return departamento;
+                        }
+                    }
+                }
+            }
+            return null;
         }
 
         public void CadastrarDepartamento(Departamento departamento)
@@ -96,5 +125,33 @@ namespace ApiMaxima.Services
                 }
             }
         }
+
+        public async Task<bool> DeletarTodosDepartamentos()
+        {
+            using (MySqlConnection connection = _mySqlConnectionDB.CreateConnection())
+            {
+                // Verifica se há produtos vinculados a algum departamento
+                string queryVerificarProdutos = "SELECT COUNT(*) FROM Produtos";
+                using (MySqlCommand commandVerificarProdutos = new MySqlCommand(queryVerificarProdutos, connection))
+                {
+                    await connection.OpenAsync();
+                    int count = Convert.ToInt32(await commandVerificarProdutos.ExecuteScalarAsync());
+                    if (count > 0)
+                    {
+                        // Se houver produtos vinculados, retorne falso
+                        return false;
+                    }
+                }
+
+                // Se não houver produtos vinculados, exclua todos os departamentos
+                string query = "DELETE FROM Departamentos";
+                using (MySqlCommand command = new MySqlCommand(query, connection))
+                {
+                    await command.ExecuteNonQueryAsync(); // Execute a consulta de forma assíncrona
+                    return true;
+                }
+            }
+        }
+
     }
 }
