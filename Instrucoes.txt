@@ -7,9 +7,9 @@ string connectionString = "server=localhost;userid=root;password=asd123;database
 -- Tabela Produtos
 CREATE TABLE produtos (
     ID INT PRIMARY KEY,
-    Código VARCHAR(255),
-    Descrição VARCHAR(255),
-    CodigoDepartamento VARCHAR(255),
+    Codigo VARCHAR(255),
+    Descricao VARCHAR(255),
+    DepartamentoCodigo VARCHAR(255),
     Preço DECIMAL(10, 2),
     Status BOOLEAN,
     Inutilizavel BOOLEAN
@@ -31,7 +31,7 @@ CREATE TABLE users(
 
 3 - adicionar registros no banco
 
-INSERT INTO produtos (ID, Código, Descrição, CodigoDepartamento, Preço, Status, Inutilizavel) 
+INSERT INTO produtos (ID, Codigo, Descricao, DepartamentoCodigo, Preço, Status, Inutilizavel) 
 VALUES 
 (1, 'PROD001', 'Refrigerante', '010', 25.99, TRUE, FALSE),
 (2, 'PROD002', 'Cerveja', '010', 59.99, TRUE, FALSE),
