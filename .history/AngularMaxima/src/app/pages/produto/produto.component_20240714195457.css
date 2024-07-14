@@ -1,0 +1,46 @@
+/* produtos.component.css */
+
+.table {
+  width: 90%;
+  margin: 20px auto; /* Centraliza a tabela com margem */
+  border-collapse: collapse;
+}
+
+.table th, .table td {
+  text-align: center;
+  padding: 10px;
+}
+
+.table th {
+  background-color: #007BFF; /* Cor de fundo do cabeçalho */
+  color: white;
+  font-size: 16px;
+  font-weight: bold;
+}
+
+.table td {
+  background-color: #f8f9fa; /* Cor de fundo das células */
+}
+
+.table .btn {
+  border-radius: 5px; /* Borda arredondada para todos os botões */
+  margin-right: 10px;
+}
+
+.table .btn-primary {
+  background-color: #007BFF; /* Cor azul para os botões "Editar" e "Detalhes" */
+  color: white;
+}
+
+.table .btn-primary:hover {
+  background-color: #0056b3; /* Cor mais escura ao passar o mouse */
+}
+
+.table .btn-danger {
+  background-color: #dc3545; /* Cor vermelha para o botão "Apagar" */
+  color: white;
+}
+
+.table .btn-danger:hover {
+  background-color: #c82333; /* Cor mais escura ao passar o mouse */
+}

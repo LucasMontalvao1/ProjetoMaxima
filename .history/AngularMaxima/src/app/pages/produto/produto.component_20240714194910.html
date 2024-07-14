@@ -1,0 +1,35 @@
+<app-menu></app-menu>
+<p>
+    <a routerLink="/produtos/create" class="btn btn-primary">Criar Novo Produto</a>
+</p>
+
+<table class="table table-striped table-hover">
+    <thead>
+        <tr>
+            <th>ID</th>
+            <th>Código</th>
+            <th>Descrição</th>
+            <th>Preço</th>
+            <th>Código do Departamento</th>
+            <th>Status</th>
+            <th>Inutilizável</th>
+            <th>Ações</th>
+        </tr>
+    </thead>
+    <tbody>
+        <tr *ngFor="let produto of produtos">
+            <td>{{ produto.id }}</td>
+            <td>{{ produto.codigo }}</td>
+            <td>{{ produto.descricao }}</td>
+            <td>{{ produto.preco | currency }}</td>
+            <td>{{ produto.departamentoCodigo }}</td>
+            <td>{{ produto.status }}</td>
+            <td>{{ produto.inutilizavel }}</td>
+            <td>
+                <a routerLink="/produto/edit/{{ produto.id }}">Editar</a>
+                <a routerLink="/produto/details/{{ produto.id }}">Detalhes</a>
+                <a (click)="(produto.id)">Apagar</a>
+            </td>
+        </tr>
+    </tbody>
+</table>

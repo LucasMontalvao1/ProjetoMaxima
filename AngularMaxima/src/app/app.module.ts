@@ -10,6 +10,8 @@ import { AuthService } from './services/auth.service';
 import { HomeComponent } from './pages/home/home.component';
 import { MenuComponent } from './layout/menu/menu.component';
 import { FooterComponent } from './layout/footer/footer.component';
+import { ProdutosComponent } from './pages/produto/produto.component';
+import { DepartamentoComponent } from './pages/departamento/departamento.component';
 
 @NgModule({
   declarations: [
@@ -18,6 +20,8 @@ import { FooterComponent } from './layout/footer/footer.component';
     HomeComponent,
     MenuComponent,
     FooterComponent,
+    ProdutosComponent,
+    DepartamentoComponent,
 
   ],
   imports: [

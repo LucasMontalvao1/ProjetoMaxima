@@ -1,0 +1,62 @@
+.btn-create-espaco {
+  margin-top: 20px;
+}
+
+.btn-criar {
+  background-color: #007BFF;
+  color: white;
+  border: none;
+  padding: 10px 20px;
+  border-radius: 8px;
+  cursor: pointer;
+  text-decoration: none;
+}
+
+.btn-criar:hover {
+  background-color: #0056b3;
+}
+
+.custom-table {
+  width: 90%;
+  margin: 20px auto;
+}
+
+.custom-table th, .custom-table td {
+  text-align: center;
+  padding: 12px;
+}
+
+.custom-table th {
+  background-color: #007BFF;
+  color: white;
+  font-size: 16px;
+  font-weight: bold;
+}
+
+.custom-table td {
+  background-color: #f8f9fa;
+}
+
+.custom-table .btn {
+  border-radius: 8px;
+  margin-right: 15px;
+  padding: 10px 16px;
+}
+
+.custom-table .btn-primary {
+  background-color: #007BFF;
+  color: white;
+}
+
+.custom-table .btn-primary:hover {
+  background-color: #0056b3;
+}
+
+.custom-table .btn-danger {
+  background-color: #dc3545;
+  color: white;
+}
+
+.custom-table .btn-danger:hover {
+  background-color: #c82333;
+}

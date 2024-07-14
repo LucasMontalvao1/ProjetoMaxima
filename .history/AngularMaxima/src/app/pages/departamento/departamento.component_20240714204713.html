@@ -1,0 +1,35 @@
+<app-menu></app-menu>
+
+<div class="btn-create-espaco">
+  <p>
+    <a routerLink="/departamentos/create" class="btn btn-criar">Criar Novo Departamento</a>
+  </p>
+
+  <table class="table table-striped table-hover">
+    <thead>
+      <tr>
+        <th>ID</th>
+        <th>Código</th>
+        <th>Descrição</th>
+        <th>Status</th>
+        <th>Ações</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr *ngFor="let departamento of departamentos">
+        <td>{{ departamento.codigo }}</td>
+        <td>{{ departamento.descricao }}</td>
+        <td>
+          <ng-container *ngIf="departamento.status === '0'">Ativo</ng-container>
+          <ng-container *ngIf="departamento.status === '1'">Inativo</ng-container>
+        </td>
+        <td>
+          <a routerLink="/departamentos/edit/{{ departamento.codigo }}" class="btn btn-primary">Editar</a>
+          <button (click)="deleteDepartamento(departamento.codigo)" class="btn btn-danger">Apagar</button>
+        </td>
+      </tr>
+    </tbody>
+  </table>
+</div>
+
+<app-footer></app-footer>

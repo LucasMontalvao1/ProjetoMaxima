@@ -1,0 +1,41 @@
+/* produtos.component.css */
+
+.table {
+  width: 90%;
+  margin: 20px auto; /* Centraliza a tabela com margem */
+  border-collapse: collapse;
+}
+
+.table th, .table td {
+  text-align: center;
+  padding: 10px;
+}
+
+.table th {
+  background-color: #007BFF;
+  color: white;
+  font-size: 16px;
+  font-weight: bold;
+}
+
+.table td {
+  background-color: #f8f9fa;
+}
+
+.table .action-link {
+  color: #007BFF;
+  margin-right: 10px;
+  cursor: pointer;
+}
+
+.table .action-link:hover {
+  text-decoration: underline;
+}
+
+.table .delete-link {
+  color: #dc3545;
+}
+
+.table .delete-link:hover {
+  color: #c82333;
+}

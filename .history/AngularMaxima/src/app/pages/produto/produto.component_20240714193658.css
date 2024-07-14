@@ -1,0 +1,25 @@
+/* produtos.component.css */
+
+.table {
+  width: 100%;
+  margin-top: 20px;
+}
+
+.table th, .table td {
+  text-align: center;
+}
+
+.table th {
+  background-color: #007BFF;
+  color: white;
+}
+
+.table td {
+  background-color: #f8f9fa;
+}
+
+.table a {
+  margin-right: 10px;
+  color: #007BFF;
+  cursor: pointer;
+}

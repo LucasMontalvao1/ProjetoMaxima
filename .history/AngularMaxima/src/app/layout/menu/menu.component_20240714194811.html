@@ -1,0 +1,19 @@
+<div class="menu-container">
+  <nav class="menu">
+    <ul>
+      <li>Maxima</li>
+      <li><a routerLink="/home">Home</a></li>
+      <li class="cadastro">
+        <a href="#">Cadastro</a>
+        <div class="submenu">
+          <a routerLink="/produto">Produtos</a>
+          <a routerLink="/departamento">Departamentos</a>
+        </div>
+      </li>
+    </ul>
+  </nav>
+
+  <div class="user-actions">
+    <button class="logout-button" (click)="logout()">Sair</button>
+  </div>
+</div>

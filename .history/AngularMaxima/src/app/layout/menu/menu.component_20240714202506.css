@@ -1,0 +1,81 @@
+.menu {
+  background-color: #333;
+  color: white;
+  padding: 10px;
+  width: 200px; /* largura do menu */
+}
+
+.menu ul {
+  list-style-type: none;
+  padding: 0;
+}
+
+.menu ul li {
+  margin-bottom: 10px; /* espaçamento entre os itens do menu */
+  font-weight: bold;
+}
+
+.menu ul li a {
+  display: block;
+  color: white;
+  text-decoration: none;
+  padding: 10px;
+}
+
+.menu ul li a:hover {
+  text-decoration: underline;
+}
+
+.submenu {
+  display: none;
+  position: absolute;
+  background-color: #333;
+  padding: 10px;
+  top: 0;
+  left: 100%; /* posiciona o submenu à direita do item de menu pai */
+  z-index: 1;
+}
+
+.menu ul li.cadastro:hover .submenu {
+  display: block;
+}
+
+.user-actions {
+  margin-top: 10px; /* espaçamento acima do botão Sair */
+}
+
+.logout-button {
+  background-color: #dc3545;
+  color: white;
+  border: none;
+  padding: 10px 20px;
+  border-radius: 5px;
+  cursor: pointer;
+  font-size: 1rem;
+}
+
+.logout-button:hover {
+  background-color: #c82333;
+}
+
+.header {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 200px; /* largura do menu */
+  background-color: #333;
+  color: white;
+  padding: 10px;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+}
+
+.menu-container {
+  display: flex;
+  flex-direction: column; /* torna o menu vertical */
+  align-items: center;
+}
+
+.user-actions {
+  margin-top: auto; /* alinha o botão Sair ao final do menu *

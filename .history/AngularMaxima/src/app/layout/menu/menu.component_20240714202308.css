@@ -1,0 +1,67 @@
+.menu-container {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  background-color: #333;
+  color: white;
+  padding: 10px 20px;
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100%;
+}
+
+.menu {
+  display: flex;
+  align-items: center;
+}
+
+.menu ul {
+  list-style-type: none;
+  display: flex;
+}
+
+.menu ul li {
+  margin-right: 15px;
+  position: relative;
+}
+
+.menu ul li a {
+  color: white;
+  text-decoration: none;
+  font-weight: bold;
+  padding: 10px;
+}
+
+.menu ul li a:hover {
+  text-decoration: underline;
+}
+
+.submenu {
+  display: none;
+  position: absolute;
+  background-color: #333;
+  padding: 10px;
+  top: 100%; /* Posiciona o submenu abaixo do item de menu */
+  left: 0;
+  z-index: 1; /* Garante que o submenu apareça sobre outros elementos */
+}
+
+.menu ul li.cadastro:hover .submenu {
+  display: block;
+}
+
+.submenu li {
+  margin-bottom: 5px; /* Espaçamento entre os itens do submenu */
+}
+
+.submenu a {
+  display: block;
+  padding: 8px 12px;
+  text-decoration: none;
+  color: white;
+}
+
+.submenu a:hover {
+  background-color: #555;
+}
