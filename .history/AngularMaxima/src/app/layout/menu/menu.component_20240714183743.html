@@ -1,0 +1,22 @@
+<header class="header">
+  <div class="logo">
+    <h2 class="login-header">Maxima</h2>
+  </div>
+  <nav class="menu">
+    <ul>
+      <li><a routerLink="/home">Home</a></li>
+      <li><a routerLink="/produtos">Produtos</a></li>
+      <li><a routerLink="/departamentos">Departamentos</a></li>
+      <li class="dropdown">
+        <a href="#">Mais <i class="fa fa-caret-down"></i></a>
+        <ul class="dropdown-content">
+          <li><a routerLink="/outra-rota">Outra Rota</a></li>
+          <!-- Adicione mais itens de menu conforme necessário -->
+        </ul>
+      </li>
+    </ul>
+  </nav>
+  <div class="user-actions">
+    <button (click)="logout()">Sair</button>
+  </div>
+</header>

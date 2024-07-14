@@ -1,0 +1,20 @@
+<header class="header">
+  <div class="logo">
+    <h2 class="login-header">Maxima</h2>
+  </div>
+  <nav class="menu">
+    <ul>
+      <li><a routerLink="/home">Home</a></li>
+      <li class="cadastro">
+        <a>Cadastro</a>
+        <ul class="submenu">
+          <li><a routerLink="/produtos">Produtos</a></li>
+          <li><a routerLink="/departamentos">Departamentos</a></li>
+        </ul>
+      </li>
+    </ul>
+  </nav>
+  <div class="user-actions">
+    <button class="logout-button" (click)="logout()">Sair</button>
+  </div>
+</header>

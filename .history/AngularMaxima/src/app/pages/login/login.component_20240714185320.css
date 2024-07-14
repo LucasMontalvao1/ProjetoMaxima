@@ -1,0 +1,86 @@
+/* Estilos para o container principal */
+.container {
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+  align-items: center;
+  min-height: 100vh; /* Para ocupar toda a altura da viewport */
+}
+
+/* Estilos para o header */
+.header {
+  background-color: #007bff;
+  color: #fff;
+  padding: 20px 0;
+  text-align: center;
+  width: 100%;
+}
+
+.header .titulo {
+  margin: 0;
+}
+
+/* Estilos para o formulário de login */
+.login-form {
+  background-color: #fff;
+  padding: 20px;
+  border-radius: 10px;
+  box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  max-width: 400px;
+  width: 100%;
+}
+
+.login-form img {
+  max-width: 200px; /* Ajuste conforme necessário */
+  margin-bottom: 20px; /* Espaçamento abaixo da imagem */
+}
+
+.form-group {
+  margin-bottom: 15px;
+}
+
+.form-group label {
+  margin-bottom: 5px;
+}
+
+.form-group input {
+  padding: 10px;
+  border-radius: 5px;
+  border: 1px solid #ccc;
+  width: 100%;
+  max-width: 300px; /* Ajuste conforme necessário */
+}
+
+button {
+  margin-top: 20px;
+  padding: 10px 20px;
+  background-color: #007bff;
+  color: #fff;
+  border: none;
+  border-radius: 5px;
+  cursor: pointer;
+  font-size: 1rem;
+  transition: background-color 0.3s ease;
+}
+
+button:hover {
+  background-color: #0056b3;
+}
+
+.error-message {
+  color: red;
+  font-size: 0.9rem;
+  margin-top: 5px;
+}
+
+/* Estilos para o footer */
+.footer {
+  background-color: #f8f9fa;
+  color: #777;
+  padding: 10px 0;
+  text-align: center;
+  width: 100%;
+}
