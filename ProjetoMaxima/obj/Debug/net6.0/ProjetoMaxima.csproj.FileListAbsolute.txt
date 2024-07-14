@@ -61,3 +61,4 @@ C:\dev\Maxima\ProjetoMaxima\obj\Debug\net6.0\refint\ProjetoMaxima.dll
 C:\dev\Maxima\ProjetoMaxima\obj\Debug\net6.0\ProjetoMaxima.pdb
 C:\dev\Maxima\ProjetoMaxima\obj\Debug\net6.0\ProjetoMaxima.genruntimeconfig.cache
 C:\dev\Maxima\ProjetoMaxima\obj\Debug\net6.0\ref\ProjetoMaxima.dll
+C:\dev\Maxima\ProjetoMaxima\obj\Debug\net6.0\ProjetoMaxima.sourcelink.json

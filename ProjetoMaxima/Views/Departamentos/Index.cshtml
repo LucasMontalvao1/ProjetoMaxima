@@ -17,9 +17,15 @@
             <th>
                 Descrição
             </th>
+            <th>
+                Ações
+            </th>
+
+
             <th></th>
         </tr>
     </thead>
+
     <tbody>
         @foreach (var departamento in Model)
         {
@@ -30,7 +36,14 @@
                 <td>
                     @Html.DisplayFor(modelItem => departamento.Descricao)
                 </td>
+
+                <td>
+                    <a asp-action="Edit" asp-route-id="@departamento.Codigo">Editar</a>
+                    <a asp-action="Details" asp-route-id="@departamento.Codigo">Detalhes</a>
+                    <a asp-action="Delete" asp-route-id="@departamento.Codigo">Apagar</a>
+                </td>
             </tr>
+
         }
     </tbody>
 </table>
