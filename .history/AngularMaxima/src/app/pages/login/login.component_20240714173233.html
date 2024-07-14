@@ -1,0 +1,28 @@
+<div class="container">
+  <header class="header">
+    <h1 class="titulo">Bem-vindo ao Sistema de Controle Financeiro</h1>
+  </header>
+
+  <div class="main-content">
+    <form class="login-form form-login" [formGroup]="loginForm" (ngSubmit)="onSubmit()">
+      <div class="form-group">
+        <label for="username">Usuário:</label>
+        <input type="text" id="username" formControlName="username">
+      </div>
+
+      <div class="form-group">
+        <label for="password">Senha:</label>
+        <input type="password" id="password" formControlName="password">
+      </div>
+
+      <button type="submit">Entrar</button>
+      <div class="error-message" *ngIf="loginForm.invalid && loginForm.touched">
+        Por favor, preencha corretamente o usuário e senha.
+      </div>
+    </form>
+  </div>
+
+  <footer class="footer">
+    <p>&copy; 2024 Sistema de Controle Financeiro. Todos os direitos reservados.</p>
+  </footer>
+</div>

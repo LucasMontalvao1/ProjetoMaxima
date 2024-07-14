@@ -1,0 +1,21 @@
+<div class="main-container">
+  <header class="header">
+    <h1>Bem-vindo ao Sistema de Controle Financeiro</h1>
+  </header>
+  <div class="login-container">
+    <form [formGroup]="login" (ngSubmit)="onSubmit()">
+      <div class="form-group">
+        <label for="username">Usuário:</label>
+        <input type="text" id="username" formControlName="username" class="form-control" placeholder="Digite seu usuário">
+      </div>
+      <div class="form-group">
+        <label for="password">Senha:</label>
+        <input type="password" id="password" formControlName="password" class="form-control" placeholder="Digite sua senha">
+      </div>
+      <button type="submit" class="btn btn-primary login-button">Entrar</button>
+    </form>
+  </div>
+  <footer class="footer">
+    <p>&copy; 2024 Sistema de Controle Financeiro. Todos os direitos reservados.</p>
+  </footer>
+</div>

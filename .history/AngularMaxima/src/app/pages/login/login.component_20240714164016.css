@@ -1,0 +1,134 @@
+/* Estilos para o container de login */
+.login-container {
+  max-width: 400px;
+  margin: 0 auto;
+  padding: 20px;
+  border: 1px solid #ccc;
+  border-radius: 5px;
+  box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+  background-color: #fff;
+  text-align: center;
+}
+
+/* Estilos para o header */
+.header {
+  margin-bottom: 20px;
+}
+
+.header h1 {
+  font-size: 24px;
+  margin: 0;
+  color: #333;
+}
+
+/* Estilos para o formulário */
+.form-group {
+  margin-bottom: 15px;
+}
+
+label {
+  display: block;
+  font-weight: bold;
+}
+
+.input-error {
+  border-color: red;
+}
+
+.text-danger {
+  color: red;
+  font-size: 12px;
+}
+
+/* Estilos para o botão de login */
+.login-button {
+  background-color: #007bff;
+  color: #fff;
+  border: none;
+  padding: 10px 20px;
+  border-radius: 20px;
+  font-size: 16px;
+  cursor: pointer;
+}
+
+.login-button:hover {
+  background-color: #0069d9;
+}
+
+/* Estilos para o footer */
+.footer {
+  margin-top: 20px;
+}
+
+.footer p {
+  font-size: 14px;
+  color: #777;
+  margin: 0;
+}
+/* Estilos para o container de login */
+.login-container {
+  max-width: 400px;
+  margin: 0 auto;
+  padding: 20px;
+  border: 1px solid #ccc;
+  border-radius: 5px;
+  box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+  background-color: #fff;
+  text-align: center;
+}
+
+/* Estilos para o header */
+.header {
+  margin-bottom: 20px;
+}
+
+.header h1 {
+  font-size: 24px;
+  margin: 0;
+  color: #333;
+}
+
+/* Estilos para o formulário */
+.form-group {
+  margin-bottom: 15px;
+}
+
+label {
+  display: block;
+  font-weight: bold;
+}
+
+.input-error {
+  border-color: red;
+}
+
+.text-danger {
+  color: red;
+  font-size: 12px;
+}
+
+/* Estilos para o botão de login */
+.login-button {
+  background-color: #007bff;
+  color: #fff;
+  border: none;
+  padding: 10px 20px;
+  border-radius: 20px;
+  font-size: 16px;
+  cursor: pointer;
+}
+
+.login-button:hover {
+  background-color: #0069d9;
+}
+
+/* Estilos para o footer */
+.footer {
+  margin-top: 20px;
+}
+
+.footer p {
+  font-size: 14px;
+  color: #777;
+  margin: 0;
+}
