@@ -14,7 +14,7 @@ using System.Reflection;
 [assembly: System.Reflection.AssemblyCompanyAttribute("ApiMaxima")]
 [assembly: System.Reflection.AssemblyConfigurationAttribute("Debug")]
 [assembly: System.Reflection.AssemblyFileVersionAttribute("1.0.0.0")]
-[assembly: System.Reflection.AssemblyInformationalVersionAttribute("1.0.0+bc12edd34752cb4def0d1535e07eddd9f3a5bebf")]
+[assembly: System.Reflection.AssemblyInformationalVersionAttribute("1.0.0+c9a66d39fee707cc5283bcf5efb81d41f7d655fa")]
 [assembly: System.Reflection.AssemblyProductAttribute("ApiMaxima")]
 [assembly: System.Reflection.AssemblyTitleAttribute("ApiMaxima")]
 [assembly: System.Reflection.AssemblyVersionAttribute("1.0.0.0")]

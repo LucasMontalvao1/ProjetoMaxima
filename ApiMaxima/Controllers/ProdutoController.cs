@@ -28,10 +28,11 @@ namespace ApiMaxima.Controllers
             var produto = _produtoService.ObterProdutoPorId(id);
             if (produto == null)
             {
-                return NotFound();
+                return NotFound($"Produto com ID {id} não encontrado.");
             }
             return Ok(produto);
         }
+
 
         [HttpGet("codigo/{codigo}")]
         public IActionResult GetByCodigo(string codigo)
@@ -39,7 +40,7 @@ namespace ApiMaxima.Controllers
             var produto = _produtoService.ObterProdutoPorCodigo(codigo);
             if (produto == null)
             {
-                return NotFound();
+                return NotFound($"Produto com código {codigo} não encontrado.");
             }
             return Ok(produto);
         }
@@ -47,9 +48,21 @@ namespace ApiMaxima.Controllers
         [HttpPost]
         public IActionResult Post(List<Produto> produtos)
         {
+            if (produtos == null || produtos.Count == 0)
+            {
+                return BadRequest("A lista de produtos não pode ser nula ou vazia.");
+            }
+
             foreach (var produto in produtos)
             {
-                _produtoService.CadastrarProduto(produto);
+                try
+                {
+                    _produtoService.CadastrarProduto(produto);
+                }
+                catch (Exception ex)
+                {
+                    return BadRequest($"Erro ao cadastrar o produto: {ex.Message}");
+                }
             }
 
             return CreatedAtAction(nameof(Get), produtos);
@@ -60,10 +73,17 @@ namespace ApiMaxima.Controllers
         {
             if (id != produto.ID)
             {
-                return BadRequest();
+                return BadRequest("O ID do produto não corresponde ao ID fornecido.");
             }
 
-            _produtoService.AtualizarProduto(produto);
+            try
+            {
+                _produtoService.AtualizarProduto(produto);
+            }
+            catch (Exception ex)
+            {
+                return BadRequest($"Erro ao atualizar o produto: {ex.Message}");
+            }
 
             return NoContent();
         }
@@ -75,10 +95,17 @@ namespace ApiMaxima.Controllers
             var produto = _produtoService.ObterProdutoPorId(id);
             if (produto == null)
             {
-                return NotFound();
+                return NotFound($"Produto com ID {id} não encontrado.");
             }
 
-            _produtoService.DeletarProdutoPorId(id);
+            try
+            {
+                _produtoService.DeletarProdutoPorId(id);
+            }
+            catch (Exception ex)
+            {
+                return BadRequest($"Erro ao deletar o produto: {ex.Message}");
+            }
 
             return NoContent();
         }
@@ -90,10 +117,17 @@ namespace ApiMaxima.Controllers
             var produto = _produtoService.ObterProdutoPorCodigo(codigo);
             if (produto == null)
             {
-                return NotFound();
+                return NotFound($"Produto com código {codigo} não encontrado.");
             }
 
-            _produtoService.DeletarProdutoPorCodigo(codigo);
+            try
+            {
+                _produtoService.DeletarProdutoPorCodigo(codigo);
+            }
+            catch (Exception ex)
+            {
+                return BadRequest($"Erro ao deletar o produto: {ex.Message}");
+            }
 
             return NoContent();
         }
@@ -102,7 +136,15 @@ namespace ApiMaxima.Controllers
         [HttpDelete]
         public IActionResult DeleteAll()
         {
-            _produtoService.DeletarTodosProdutos();
+            try
+            {
+                _produtoService.DeletarTodosProdutos();
+            }
+            catch (Exception ex)
+            {
+                return BadRequest($"Erro ao deletar todos os produtos: {ex.Message}");
+            }
+
             return NoContent();
         }
     }

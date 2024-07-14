@@ -1,6 +1,4 @@
-﻿// DepartamentoService.cs
-
-using System;
+﻿using System;
 using System.Collections.Generic;
 using System.Threading.Tasks;
 using MySql.Data.MySqlClient;
@@ -21,135 +19,263 @@ namespace ApiMaxima.Services
         {
             List<Departamento> departamentos = new List<Departamento>();
 
-            using (MySqlConnection connection = _mySqlConnectionDB.CreateConnection())
+            try
             {
-                string query = "SELECT * FROM Departamentos";
-
-                using (MySqlCommand command = new MySqlCommand(query, connection))
+                using (MySqlConnection connection = _mySqlConnectionDB.CreateConnection())
                 {
-                    connection.Open();
-                    using (MySqlDataReader reader = command.ExecuteReader())
+                    string query = "SELECT * FROM Departamentos";
+
+                    using (MySqlCommand command = new MySqlCommand(query, connection))
                     {
-                        while (reader.Read())
+                        connection.Open();
+                        using (MySqlDataReader reader = command.ExecuteReader())
                         {
-                            Departamento departamento = new Departamento
+                            while (reader.Read())
                             {
-                                Codigo = reader["Codigo"].ToString(),
-                                Descricao = reader["Descricao"].ToString()
-                            };
-                            departamentos.Add(departamento);
+                                Departamento departamento = LerDepartamento(reader);
+                                departamentos.Add(departamento);
+                            }
                         }
                     }
                 }
             }
+            catch (Exception ex)
+            {
+                Console.WriteLine($"Erro ao obter todos os departamentos: {ex.Message}");
+            }
+
             return departamentos;
         }
 
         public Departamento ObterDepartamentoPorCodigo(string codigo)
         {
-            using (MySqlConnection connection = _mySqlConnectionDB.CreateConnection())
+            try
             {
-                string query = "SELECT * FROM Departamentos WHERE Codigo = @Codigo";
-                using (MySqlCommand command = new MySqlCommand(query, connection))
+                using (MySqlConnection connection = _mySqlConnectionDB.CreateConnection())
                 {
-                    command.Parameters.AddWithValue("@Codigo", codigo);
-                    connection.Open();
-                    using (MySqlDataReader reader = command.ExecuteReader())
+                    string query = "SELECT * FROM Departamentos WHERE Codigo = @Codigo";
+                    using (MySqlCommand command = new MySqlCommand(query, connection))
                     {
-                        if (reader.Read())
+                        command.Parameters.AddWithValue("@Codigo", codigo);
+                        connection.Open();
+                        using (MySqlDataReader reader = command.ExecuteReader())
                         {
-                            Departamento departamento = new Departamento
+                            if (reader.Read())
                             {
-                                Codigo = reader["Codigo"].ToString(),
-                                Descricao = reader["Descricao"].ToString()
-                            };
-                            return departamento;
+                                Departamento departamento = LerDepartamento(reader);
+                                return departamento;
+                            }
                         }
                     }
                 }
             }
+            catch (Exception ex)
+            {
+                Console.WriteLine($"Erro ao obter departamento por código: {ex.Message}");
+            }
+
             return null;
         }
 
         public void CadastrarDepartamento(Departamento departamento)
         {
-            using (MySqlConnection connection = _mySqlConnectionDB.CreateConnection())
+            if (departamento == null)
+                throw new ArgumentNullException(nameof(departamento), "Departamento não pode ser nulo");
+
+            try
             {
-                string query = "INSERT INTO Departamentos (Codigo, Descricao) " +
-                               "VALUES (@Codigo, @Descricao)";
+                if (ObterDepartamentoPorCodigo(departamento.Codigo) != null)
+                    throw new InvalidOperationException($"Já existe um departamento com o código {departamento.Codigo}");
 
-                using (MySqlCommand command = new MySqlCommand(query, connection))
+                using (MySqlConnection connection = _mySqlConnectionDB.CreateConnection())
                 {
-                    command.Parameters.AddWithValue("@Codigo", departamento.Codigo);
-                    command.Parameters.AddWithValue("@Descricao", departamento.Descricao);
+                    string query = "INSERT INTO Departamentos (Codigo, Descricao) " +
+                                   "VALUES (@Codigo, @Descricao)";
 
-                    connection.Open();
-                    command.ExecuteNonQuery();
+                    using (MySqlCommand command = new MySqlCommand(query, connection))
+                    {
+                        command.Parameters.AddWithValue("@Codigo", departamento.Codigo);
+                        command.Parameters.AddWithValue("@Descricao", departamento.Descricao);
+
+                        connection.Open();
+                        command.ExecuteNonQuery();
+
+                        Console.WriteLine($"Departamento {departamento.Codigo} cadastrado com sucesso.");
+                    }
                 }
+            }
+            catch (Exception ex)
+            {
+                Console.WriteLine($"Erro ao cadastrar departamento: {ex.Message}");
             }
         }
 
         public async Task<bool> EditarDepartamento(Departamento departamento)
         {
-            using (MySqlConnection connection = _mySqlConnectionDB.CreateConnection())
-            {
-                string query = "UPDATE Departamentos SET Descricao = @Descricao WHERE Codigo = @Codigo";
+            if (departamento == null)
+                throw new ArgumentNullException(nameof(departamento), "Departamento não pode ser nulo");
 
+            try
+            {
+                using (MySqlConnection connection = _mySqlConnectionDB.CreateConnection())
+                {
+                    string query = "UPDATE Departamentos SET Descricao = @Descricao WHERE Codigo = @Codigo";
+
+                    using (MySqlCommand command = new MySqlCommand(query, connection))
+                    {
+                        command.Parameters.AddWithValue("@Descricao", departamento.Descricao);
+                        command.Parameters.AddWithValue("@Codigo", departamento.Codigo);
+
+                        await connection.OpenAsync();
+                        int rowsAffected = await command.ExecuteNonQueryAsync();
+
+                        if (rowsAffected > 0)
+                        {
+                            Console.WriteLine($"Departamento {departamento.Codigo} editado com sucesso.");
+                            return true;
+                        }
+                        else
+                        {
+                            Console.WriteLine($"Nenhum departamento foi editado para o código {departamento.Codigo}.");
+                            return false;
+                        }
+                    }
+                }
+            }
+            catch (Exception ex)
+            {
+                Console.WriteLine($"Erro ao editar departamento: {ex.Message}");
+                throw;
+            }
+        }
+               
+        public async Task<bool> DeletarTodosDepartamentos()
+        {
+            try
+            {
+                using (MySqlConnection connection = _mySqlConnectionDB.CreateConnection())
+                {
+                    await connection.OpenAsync();
+
+                    if (await DepartamentosTemProdutosVinculados(connection))
+                    {
+                        Console.WriteLine("Não é possível deletar todos os departamentos pois existem produtos vinculados.");
+                        return false;
+                    }
+
+                    string query = "DELETE FROM Departamentos";
+                    using (MySqlCommand command = new MySqlCommand(query, connection))
+                    {
+                        int rowsAffected = await command.ExecuteNonQueryAsync();
+
+                        if (rowsAffected > 0)
+                        {
+                            Console.WriteLine("Todos os departamentos foram deletados com sucesso.");
+                            return true;
+                        }
+                        else
+                        {
+                            Console.WriteLine("Nenhum departamento foi deletado.");
+                            return false;
+                        }
+                    }
+                }
+            }
+            catch (Exception ex)
+            {
+                Console.WriteLine($"Erro ao deletar todos os departamentos: {ex.Message}");
+                throw;
+            }
+        }
+
+        private Departamento LerDepartamento(MySqlDataReader reader)
+        {
+            Departamento departamento = new Departamento
+            {
+                Codigo = reader["Codigo"].ToString(),
+                Descricao = reader["Descricao"].ToString()
+            };
+            return departamento;
+        }
+
+        private async Task<bool> DepartamentosTemProdutosVinculados(MySqlConnection connection)
+        {
+            try
+            {
+                string query = "SELECT COUNT(*) FROM Produtos";
                 using (MySqlCommand command = new MySqlCommand(query, connection))
                 {
-                    command.Parameters.AddWithValue("@Descricao", departamento.Descricao);
-                    command.Parameters.AddWithValue("@Codigo", departamento.Codigo);
-
-                    await connection.OpenAsync(); // Abra a conexão de forma assíncrona
-                    int rowsAffected = await command.ExecuteNonQueryAsync(); // Execute a consulta de forma assíncrona
-
-                    return rowsAffected > 0; // Retorna verdadeiro se pelo menos uma linha foi afetada
+                    int count = Convert.ToInt32(await command.ExecuteScalarAsync());
+                    return count > 0;
                 }
+            }
+            catch (Exception ex)
+            {
+                Console.WriteLine($"Erro ao verificar produtos vinculados a algum departamento: {ex.Message}");
+                throw;
             }
         }
 
         public async Task<bool> DeletarDepartamento(string codigo)
         {
-            using (MySqlConnection connection = _mySqlConnectionDB.CreateConnection())
+            try
             {
-                string query = "DELETE FROM Departamentos WHERE Codigo = @Codigo";
+                using (MySqlConnection connection = _mySqlConnectionDB.CreateConnection())
+                {
+                    await connection.OpenAsync();
 
+                    // Verifica se o departamento pode ser deletado
+                    if (await DepartamentoTemProdutosVinculados(connection, codigo))
+                    {
+                        Console.WriteLine($"Não é possível deletar o departamento {codigo} pois existem produtos vinculados.");
+                        return false;
+                    }
+
+                    // Caso seja possível deletar, executa a deleção
+                    string query = "DELETE FROM Departamentos WHERE Codigo = @Codigo";
+                    using (MySqlCommand command = new MySqlCommand(query, connection))
+                    {
+                        command.Parameters.AddWithValue("@Codigo", codigo);
+
+                        int rowsAffected = await command.ExecuteNonQueryAsync();
+
+                        if (rowsAffected > 0)
+                        {
+                            Console.WriteLine($"Departamento {codigo} deletado com sucesso.");
+                            return true;
+                        }
+                        else
+                        {
+                            Console.WriteLine($"Nenhum departamento foi deletado para o código {codigo}.");
+                            return false;
+                        }
+                    }
+                }
+            }
+            catch (Exception ex)
+            {
+                Console.WriteLine($"Erro ao deletar departamento: {ex.Message}");
+                throw;
+            }
+        }
+
+        private async Task<bool> DepartamentoTemProdutosVinculados(MySqlConnection connection, string codigo)
+        {
+            try
+            {
+                string query = "SELECT COUNT(*) FROM Produtos WHERE DepartamentoCodigo = @Codigo";
                 using (MySqlCommand command = new MySqlCommand(query, connection))
                 {
                     command.Parameters.AddWithValue("@Codigo", codigo);
 
-                    await connection.OpenAsync(); // Abra a conexão de forma assíncrona
-                    int rowsAffected = await command.ExecuteNonQueryAsync(); // Execute a consulta de forma assíncrona
-
-                    return rowsAffected > 0; // Retorna verdadeiro se pelo menos uma linha foi afetada
+                    int count = Convert.ToInt32(await command.ExecuteScalarAsync());
+                    return count > 0;
                 }
             }
-        }
-
-        public async Task<bool> DeletarTodosDepartamentos()
-        {
-            using (MySqlConnection connection = _mySqlConnectionDB.CreateConnection())
+            catch (Exception ex)
             {
-                // Verifica se há produtos vinculados a algum departamento
-                string queryVerificarProdutos = "SELECT COUNT(*) FROM Produtos";
-                using (MySqlCommand commandVerificarProdutos = new MySqlCommand(queryVerificarProdutos, connection))
-                {
-                    await connection.OpenAsync();
-                    int count = Convert.ToInt32(await commandVerificarProdutos.ExecuteScalarAsync());
-                    if (count > 0)
-                    {
-                        // Se houver produtos vinculados, retorne falso
-                        return false;
-                    }
-                }
-
-                // Se não houver produtos vinculados, exclua todos os departamentos
-                string query = "DELETE FROM Departamentos";
-                using (MySqlCommand command = new MySqlCommand(query, connection))
-                {
-                    await command.ExecuteNonQueryAsync(); // Execute a consulta de forma assíncrona
-                    return true;
-                }
+                Console.WriteLine($"Erro ao verificar produtos vinculados ao departamento: {ex.Message}");
+                throw;
             }
         }
 
