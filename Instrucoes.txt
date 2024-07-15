@@ -11,8 +11,8 @@ CREATE TABLE produtos (
     Descricao VARCHAR(255),
     DepartamentoCodigo VARCHAR(255),
     Preço DECIMAL(10, 2),
-    Status BOOLEAN,
-    Inutilizavel BOOLEAN
+    Status number,
+    Inutilizavel number
 );
 
 -- Tabela Departamentos
