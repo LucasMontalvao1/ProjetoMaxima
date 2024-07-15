@@ -1,0 +1,46 @@
+<app-menu></app-menu>
+
+<div class="btn-create-espaco">
+    <p>
+        <a routerLink="/produto/criar" class="btn btn-criar">Criar Novo Produto</a>
+    </p>
+
+<table class="table table-striped table-hover">
+    <thead>
+        <tr>
+            <th>ID</th>
+            <th>Código</th>
+            <th>Descrição</th>
+            <th>Preço</th>
+            <th>Código do Departamento</th>
+            <th>Status</th>
+            <th>Inutilizável</th>
+            <th>Ações</th>
+        </tr>
+    </thead>
+    <tbody>
+        <tr *ngFor="let produto of produtos">
+            <td>{{ produto.id }}</td>
+            <td>{{ produto.codigo }}</td>
+            <td>{{ produto.descricao }}</td>
+            <td>{{ produto.preco | currency }}</td>
+            <td>{{ produto.departamentoCodigo }}</td>
+            <td>
+                <ng-container *ngIf="produto.status === 0">Inativo</ng-container>
+                <ng-container *ngIf="produto.status === 1">Ativo</ng-container>
+            </td>
+            <td>{{ produto.inutilizavel }}</td>
+            <td>
+<!-- Link para editar um produto -->
+<a [routerLink]="'/produto/editar/' + produto.id" class="btn btn-primary">Editar</a>
+
+<!-- Link para detalhar um produto -->
+<a [routerLink]="'/produto/detalhar/' + produto.id" class="btn btn-primary">Detalhes</a>
+
+                <button (click)="(produto.id)" class="btn btn-danger">Apagar</button>
+            </td>
+        </tr>
+    </tbody>
+</table>
+</div>
+<app-footer></app-footer>
