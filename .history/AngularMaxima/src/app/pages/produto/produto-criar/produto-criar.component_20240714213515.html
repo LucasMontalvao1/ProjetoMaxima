@@ -1,0 +1,57 @@
+<app-menu></app-menu>
+
+<div class="container">
+  <div class="form-container">
+    <h2 class="titulo">Criar Novo Produto</h2>
+    <form *ngIf="produtoForm" [formGroup]="produtoForm" (ngSubmit)="onSubmit()">
+      <div class="form-group">
+        <label for="codigo">Código:</label>
+        <input type="text" class="form-control" id="codigo" formControlName="codigo" placeholder="Código">
+        <div *ngIf="produtoForm.get('codigo')?.invalid && produtoForm.get('codigo')?.touched" class="invalid-feedback">
+          Código é obrigatório.
+        </div>
+      </div>
+      <div class="form-group">
+        <label for="descricao">Descrição:</label>
+        <input type="text" class="form-control" id="descricao" formControlName="descricao" placeholder="Descrição">
+        <div *ngIf="produtoForm.get('descricao')?.invalid && produtoForm.get('descricao')?.touched" class="invalid-feedback">
+          Descrição é obrigatória.
+        </div>
+      </div>
+      <div class="form-group">
+        <label for="preco">Preço:</label>
+        <input type="number" class="form-control" id="preco" formControlName="preco" placeholder="Preço">
+        <div *ngIf="produtoForm.get('preco')?.invalid && produtoForm.get('preco')?.touched" class="invalid-feedback">
+          Preço é obrigatório.
+        </div>
+      </div>
+      <div class="form-group">
+        <label for="departamentoCodigo">Código do Departamento:</label>
+        <select class="form-control" id="departamentoCodigo" formControlName="departamentoCodigo">
+          <option *ngFor="let departamento of departamentosAtivos" [value]="departamento.codigo">{{ departamento.descricao }}</option>
+        </select>
+        <div *ngIf="produtoForm.get('departamentoCodigo')?.invalid && produtoForm.get('departamentoCodigo')?.touched" class="invalid-feedback">
+          Código do Departamento é obrigatório.
+        </div>
+      </div>
+      <div class="form-group">
+        <div class="form-check-inline">
+          <input type="checkbox" class="form-check-input" id="status" formControlName="status">
+          <label class="form-check-label" for="status">Ativo</label>
+        </div>
+        <div class="form-check-inline">
+          <input type="checkbox" class="form-check-input" id="inutilizavel" formControlName="inutilizavel">
+          <label class="form-check-label" for="inutilizavel">Inutilizável</label>
+        </div>
+      </div>
+      <button type="submit" class="btn btn-primary mt-3">Salvar</button>
+    </form>
+    <div class="button-group mt-3">
+      <button class="btn btn-secondary" (click)="voltarHome()">Voltar para Home</button>
+      <button class="btn btn-secondary" (click)="voltarParaProdutos()">Voltar para Produtos</button>
+    </div>
+  </div>
+</div>
+
+
+<app-footer></app-footer>

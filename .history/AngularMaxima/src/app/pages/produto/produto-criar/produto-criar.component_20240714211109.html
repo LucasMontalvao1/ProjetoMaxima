@@ -1,0 +1,32 @@
+<div class="container">
+  <h2>Criar Novo Produto</h2>
+  <form *ngIf="produtoForm" [formGroup]="produtoForm" (ngSubmit)="onSubmit()">
+    <div class="form-group">
+      <label for="codigo">Código:</label>
+      <input type="text" class="form-control" id="codigo" formControlName="codigo" placeholder="Código">
+    </div>
+    <div class="form-group">
+      <label for="descricao">Descrição:</label>
+      <input type="text" class="form-control" id="descricao" formControlName="descricao" placeholder="Descrição">
+    </div>
+    <div class="form-group">
+      <label for="preco">Preço:</label>
+      <input type="number" class="form-control" id="preco" formControlName="preco" placeholder="Preço">
+    </div>
+    <div class="form-group">
+      <label for="departamentoCodigo">Código do Departamento:</label>
+      <select class="form-control" id="departamentoCodigo" formControlName="departamentoCodigo">
+        <option *ngFor="let departamento of departamentosAtivos" [value]="departamento.codigo">{{ departamento.descricao }}</option>
+      </select>
+    </div>
+    <div class="form-check">
+      <input type="checkbox" class="form-check-input" id="status" formControlName="status">
+      <label class="form-check-label" for="status">Ativo</label>
+    </div>
+    <div class="form-check">
+      <input type="checkbox" class="form-check-input" id="inutilizavel" formControlName="inutilizavel">
+      <label class="form-check-label" for="inutilizavel">Inutilizável</label>
+    </div>
+    <button type="submit" class="btn btn-primary mt-3">Salvar</button>
+  </form>
+</div>

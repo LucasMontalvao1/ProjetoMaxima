@@ -1,0 +1,52 @@
+<app-menu></app-menu>
+
+<div class="container">
+  <div class="form-container">
+    <div class="titulo">Criar Novo Produto</div>
+    <form #formProduto="ngForm" (ngSubmit)="create()">
+      <div class="form-group">
+        <label for="codigo">Código:</label>
+        <input type="text" class="form-control" id="codigo" name="codigo" [(ngModel)]="novoProduto.codigo" required>
+        <div *ngIf="formProduto.controls['codigo'].invalid && (formProduto.controls['codigo'].dirty || formProduto.controls['codigo'].touched)" class="invalid-feedback">
+          Campo obrigatório
+        </div>
+      </div>
+      <div class="form-group">
+        <label for="descricao">Descrição:</label>
+        <input type="text" class="form-control" id="descricao" name="descricao" [(ngModel)]="novoProduto.descricao" required>
+        <div *ngIf="formProduto.controls['descricao'].invalid && (formProduto.controls['descricao'].dirty || formProduto.controls['descricao'].touched)" class="invalid-feedback">
+          Campo obrigatório
+        </div>
+      </div>
+      <div class="form-group">
+        <label for="preco">Preço:</label>
+        <input type="number" class="form-control" id="preco" name="preco" [(ngModel)]="novoProduto.preco" required>
+        <div *ngIf="formProduto.controls['preco'].invalid && (formProduto.controls['preco'].dirty || formProduto.controls['preco'].touched)" class="invalid-feedback">
+          Campo obrigatório
+        </div>
+      </div>
+      <div class="form-group">
+        <label for="departamentoCodigo">Código do Departamento:</label>
+        <input type="text" class="form-control" id="departamentoCodigo" name="departamentoCodigo" [(ngModel)]="novoProduto.departamentoCodigo" required>
+        <div *ngIf="formProduto.controls['departamentoCodigo'].invalid && (formProduto.controls['departamentoCodigo'].dirty || formProduto.controls['departamentoCodigo'].touched)" class="invalid-feedback">
+          Campo obrigatório
+        </div>
+      </div>
+      <div class="form-check">
+        <input class="form-check-input" type="checkbox" id="status" name="status" [(ngModel)]="novoProduto.status">
+        <label class="form-check-label" for="status">Ativo</label>
+      </div>
+      <div class="form-check">
+        <input class="form-check-input" type="checkbox" id="inutilizavel" name="inutilizavel" [(ngModel)]="novoProduto.inutilizavel">
+        <label class="form-check-label" for="inutilizavel">Inutilizável</label>
+      </div>
+      <div class="button-group">
+        <button type="submit" class="btn-primary">Salvar</button>
+        <button type="button" class="btn-secondary">Cancelar</button>
+      </div>
+    </form>
+  </div>
+</div>
+
+
+<app-footer></app-footer>
