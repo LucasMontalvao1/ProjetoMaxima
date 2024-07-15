@@ -29,7 +29,10 @@
                 <ng-container *ngIf="produto.status === 0">Inativo</ng-container>
                 <ng-container *ngIf="produto.status === 1">Ativo</ng-container>
             </td>
-            <td>{{ produto.inutilizavel }}</td>
+            <td>
+                <ng-container *ngIf="produto.inutilizavel === 0">Ativo</ng-container>
+                <ng-container *ngIf="produto.inutilizavel === 1">Excluido</ng-container>
+            </td>
             <td>
             <a [routerLink]="'/produto/editar/' + produto.id" class="btn btn-primary">Editar</a>
             <a [routerLink]="'/produto/detalhar/' + produto.id" class="btn btn-primary">Detalhes</a>
