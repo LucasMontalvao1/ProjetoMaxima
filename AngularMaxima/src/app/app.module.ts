@@ -16,6 +16,7 @@ import { ProdutoCriarComponent } from '../../src/app/pages/produto/produto-criar
 import { ProdutoEditarComponent } from './pages/produto/produto-editar/produto-editar.component';
 import { ProdutoDetalharComponent } from './pages/produto/produto-detalhar/produto-detalhar.component';
 import { RouterModule } from '@angular/router';
+import { ProdutoDeletarComponent } from './pages/produto/produto-deletar/produto-deletar.component';
 
 @NgModule({
   declarations: [
@@ -28,7 +29,8 @@ import { RouterModule } from '@angular/router';
     ProdutoCriarComponent,
     ProdutoEditarComponent,
     ProdutoDetalharComponent,
-    DepartamentoComponent
+    DepartamentoComponent,
+    ProdutoDeletarComponent
   ],
   imports: [
     BrowserModule,

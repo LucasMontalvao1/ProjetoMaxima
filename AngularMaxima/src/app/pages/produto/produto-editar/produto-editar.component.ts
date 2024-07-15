@@ -3,6 +3,8 @@ import { FormBuilder, FormGroup, Validators } from '@angular/forms';
 import { ActivatedRoute, Router } from '@angular/router';
 import { Produto } from '../../../models/produto.model';
 import { ProdutoService } from '../../../services/produto.service';
+import { DepartamentoService } from 'src/app/services/departamento.service';
+import { Departamento } from 'src/app/models/departamento.model';
 
 @Component({
   selector: 'app-produtos-editar',
@@ -12,12 +14,14 @@ import { ProdutoService } from '../../../services/produto.service';
 export class ProdutoEditarComponent implements OnInit {
   produtoForm!: FormGroup;
   produtoId: number = 0;
+  departamentosAtivos: Departamento[] = [];
 
   constructor(
     private formBuilder: FormBuilder,
     private route: ActivatedRoute,
     private router: Router,
-    private produtoService: ProdutoService
+    private produtoService: ProdutoService,
+    private departamentoService: DepartamentoService
   ) {}
 
   ngOnInit(): void {
@@ -32,6 +36,7 @@ export class ProdutoEditarComponent implements OnInit {
     });
 
     this.carregarProdutoParaEdicao();
+    this.carregarDepartamentos();
   }
 
   carregarProdutoParaEdicao() {
@@ -50,6 +55,19 @@ export class ProdutoEditarComponent implements OnInit {
       },
       (error) => {
         console.error('Erro ao carregar produto para edição:', error);
+        alert('Erro ao carregar produto para edição. Verifique o console para mais detalhes.');
+      }
+    );
+  }
+
+  carregarDepartamentos() {
+    this.departamentoService.getAllDepartamentos().subscribe(
+      (data: Departamento[]) => {
+        this.departamentosAtivos = data;
+      },
+      (error) => {
+        console.error('Erro ao carregar departamentos:', error);
+        alert('Erro ao carregar departamentos. Verifique o console para mais detalhes.');
       }
     );
   }
@@ -73,7 +91,7 @@ export class ProdutoEditarComponent implements OnInit {
         (response) => {
           console.log('Produto atualizado com sucesso:', response);
           alert('Produto atualizado com sucesso.');
-          this.router.navigate(['/produtos']);
+          this.router.navigate(['/produto']);
         },
         (error) => {
           console.error('Erro ao atualizar produto:', error);
@@ -88,9 +106,5 @@ export class ProdutoEditarComponent implements OnInit {
       console.error('Formulário inválido. Verifique os campos.');
       alert('Por favor, preencha todos os campos obrigatórios.');
     }
-  }
-
-  cancelarEdicao() {
-    this.router.navigate(['/produtos']);
   }
 }

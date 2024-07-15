@@ -8,7 +8,7 @@
       <div class="form-group">
         <label for="codigo">Código:</label>
         <input type="text" id="codigo" formControlName="codigo" class="form-control">
-        <div *ngIf="produtoForm?.get('codigo')?.errors?.['required']" class="invalid-feedback">
+        <div *ngIf="produtoForm.get('codigo')?.errors?.['required']" class="invalid-feedback">
           Código é obrigatório.
         </div>
       </div>
@@ -16,7 +16,7 @@
       <div class="form-group">
         <label for="descricao">Descrição:</label>
         <input type="text" id="descricao" formControlName="descricao" class="form-control">
-        <div *ngIf="produtoForm?.get('descricao')?.errors?.['required']" class="invalid-feedback">
+        <div *ngIf="produtoForm.get('descricao')?.errors?.['required']" class="invalid-feedback">
           Descrição é obrigatória.
         </div>
       </div>
@@ -24,15 +24,19 @@
       <div class="form-group">
         <label for="preco">Preço:</label>
         <input type="number" id="preco" formControlName="preco" class="form-control">
-        <div *ngIf="produtoForm?.get('preco')?.errors?.['required']" class="invalid-feedback">
+        <div *ngIf="produtoForm.get('preco')?.errors?.['required']" class="invalid-feedback">
           Preço é obrigatório.
         </div>
       </div>
 
       <div class="form-group">
         <label for="departamentoCodigo">Código do Departamento:</label>
-        <input type="text" id="departamentoCodigo" formControlName="departamentoCodigo" class="form-control">
-        <div *ngIf="produtoForm?.get('departamentoCodigo')?.errors?.['required']" class="invalid-feedback">
+        <select class="form-control" id="departamentoCodigo" formControlName="departamentoCodigo">
+          <option *ngFor="let departamento of departamentosAtivos" [value]="departamento.codigo">
+            {{ departamento.descricao }}
+          </option>
+        </select>
+        <div *ngIf="produtoForm.get('departamentoCodigo')?.errors?.['required']" class="invalid-feedback">
           Código do Departamento é obrigatório.
         </div>
       </div>
@@ -48,11 +52,10 @@
       </div>
 
       <div class="button-group">
-        <button type="submit" routerLink="/produto"class="btn btn-primary">Salvar</button>
-        <button class="btn btn-cancelar" routerLink="/produto">Cancelar</button>
+        <button type="submit" class="btn btn-primary">Salvar</button>
+        <button type="button" class="btn btn-cancelar" routerLink="/produto">Cancelar</button>
       </div>
     </form>
-    
   </div>
 </div>
 

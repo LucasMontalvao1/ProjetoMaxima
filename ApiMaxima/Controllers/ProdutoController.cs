@@ -147,5 +147,28 @@ namespace ApiMaxima.Controllers
 
             return NoContent();
         }
+
+        [HttpPatch("inutilizar/{id}")]
+        public IActionResult InutilizarProduto(int id)
+        {
+            try
+            {
+                bool sucesso = _produtoService.InutilizarProduto(id);
+                if (sucesso)
+                {
+                    return Ok(new { });
+                }
+                else
+                {
+                    return NotFound($"Produto com ID {id} não encontrado.");
+                }
+            }
+            catch (Exception ex)
+            {
+                return StatusCode(500, $"Erro ao inutilizar produto: {ex.Message}");
+            }
+        }
     }
+
 }
+

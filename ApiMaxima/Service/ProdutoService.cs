@@ -286,5 +286,40 @@ namespace ApiMaxima.Services
                 Console.WriteLine($"Erro ao deletar todos os produtos: {ex.Message}");
             }
         }
+
+        public bool InutilizarProduto(int id)
+        {
+            try
+            {
+                using (MySqlConnection connection = _mySqlConnectionDB.CreateConnection())
+                {
+                    string query = "UPDATE Produtos SET Inutilizavel = 1 WHERE ID = @Id";
+
+                    using (MySqlCommand command = new MySqlCommand(query, connection))
+                    {
+                        command.Parameters.AddWithValue("@Id", id);
+
+                        connection.Open();
+                        int rowsAffected = command.ExecuteNonQuery();
+
+                        if (rowsAffected == 1)
+                        {
+                            Console.WriteLine("Produto inutilizado com sucesso!");
+                            return true; 
+                        }
+                        else
+                        {
+                            Console.WriteLine("Falha ao inutilizar o produto.");
+                            return false; 
+                        }
+                    }
+                }
+            }
+            catch (Exception ex)
+            {
+                Console.WriteLine($"Erro ao inutilizar produto por ID: {ex.Message}");
+                return false; 
+            }
+        }
     }
 }

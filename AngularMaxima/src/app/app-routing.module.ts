@@ -7,6 +7,7 @@ import { DepartamentoComponent } from './pages/departamento/departamento.compone
 import { ProdutoCriarComponent } from './pages/produto/produto-criar/produto-criar.component';
 import { ProdutoEditarComponent } from './pages/produto/produto-editar/produto-editar.component';
 import { ProdutoDetalharComponent } from './pages/produto/produto-detalhar/produto-detalhar.component';
+import { ProdutoDeletarComponent } from './pages/produto/produto-deletar/produto-deletar.component';
 
 const routes: Routes = [
   { path: '', redirectTo: '/login', pathMatch: 'full'},
@@ -16,6 +17,7 @@ const routes: Routes = [
   { path: 'produto/criar', component: ProdutoCriarComponent},
   { path: 'produto/editar/:id', component: ProdutoEditarComponent},
   { path: 'produto/detalhar/:id', component: ProdutoDetalharComponent},
+  { path: 'produto/deletar/:id', component: ProdutoDeletarComponent},
   { path: 'departamento', component: DepartamentoComponent},
 ];
 

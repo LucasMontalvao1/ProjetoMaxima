@@ -40,8 +40,8 @@ export class ProdutoService {
     return this.http.put<Produto>(url, produto);
   }
 
-  deleteProduto(id: number): Observable<any> {
-    const url = `${this.apiUrl}/${id}`;
-    return this.http.delete<any>(url);
+  updateProdutoInutilizavel(id: number): Observable<void> {
+    const url = `${this.apiUrl}/inutilizar/${id}`;
+    return this.http.patch<void>(url, { inutilizavel: 1 });
   }
 }

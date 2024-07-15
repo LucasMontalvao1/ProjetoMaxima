@@ -37,7 +37,7 @@
             <a [routerLink]="'/produto/editar/' + produto.id" class="btn btn-primary">Editar</a>
             <a [routerLink]="'/produto/detalhar/' + produto.id" class="btn btn-primary">Detalhes</a>
 
-                <button (click)="(produto.id)" class="btn btn-danger">Apagar</button>
+                <button [routerLink]="'/produto/deletar/' + produto.id" class="btn btn-danger">Apagar</button>
             </td>
         </tr>
     </tbody>
