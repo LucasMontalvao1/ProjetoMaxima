@@ -51,10 +51,22 @@
   color: white;
   text-decoration: none;
   padding: 8px 12px;
+  cursor: pointer;
+}
+
+.menu-btn {
+  color: white;
+  text-decoration: none;
+  padding: 8px 12px;
+  cursor: pointer;
 }
 
 .submenu a:hover {
   background-color: #555;
+}
+
+.menu-btn:hover {
+ background-color: #555;
 }
 
 .user-actions {

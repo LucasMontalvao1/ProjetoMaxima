@@ -6,7 +6,7 @@ string connectionString = "server=localhost;userid=root;password=asd123;database
 
 -- Tabela Produtos
 CREATE TABLE produtos (
-    ID INT PRIMARY KEY,
+    ID INT PRIMARY KEY AUTO_INCREMENT,
     Codigo VARCHAR(255),
     Descricao VARCHAR(255),
     DepartamentoCodigo VARCHAR(255),
@@ -29,7 +29,7 @@ CREATE TABLE users(
     Password VARCHAR(255)
 );
 
-3 - adicionar registros no banco
+3 - Adicionar registros no banco
 
 INSERT INTO produtos (ID, Codigo, Descricao, DepartamentoCodigo, Preço, Status, Inutilizavel) 
 VALUES 
@@ -54,7 +54,8 @@ VALUES
 
 
 
-4 - Abrir projeto ApiMaxima rodando comando "dotnet run" no CMD.
-5 - Abrir projeto ProjetoMaxima rodando comando "dotnet run" no CMD.
+4 - Abrir projeto ApiMaxima rodando comando "dotnet run" no CMD dentro da pasta do projeto.
+5 - Abrir projeto ProjetoMaxima rodando comando "dotnet run" no CMD dentro da pasta do projeto.
+6 - Abrir projeto AngularMaxima rodanod comando "npm start" no CMD dentro da pasta do projeto
 
 

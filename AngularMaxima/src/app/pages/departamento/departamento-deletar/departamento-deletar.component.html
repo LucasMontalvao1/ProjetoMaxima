@@ -1,7 +1,7 @@
 <app-menu></app-menu>
 
-<div class="container">
-  <div class="form-container" *ngIf="departamento">
+<div class="container" *ngIf="departamento">
+  <div class="form-container">
     <h2 class="titulo">Detalhes do Departamento</h2>
 
     <div class="form-group">
@@ -20,7 +20,7 @@
 
     <div class="button-group">
       <button (click)="apagarDepartamento()" class="btn btn-cancelar">Apagar</button>
-      <button class="btn btn-secondary" routerLink="/departamento" class="btn btn-primary">Voltar</button>
+      <button routerLink="/departamento" class="btn btn-secondary">Voltar</button>
     </div>
   </div>
 </div>
