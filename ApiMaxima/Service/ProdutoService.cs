@@ -321,5 +321,39 @@ namespace ApiMaxima.Services
                 return false; 
             }
         }
+
+        public List<Produto> ObterProdutosPorDepartamentoCodigo(string codigo)
+        {
+            List<Produto> produtos = new List<Produto>();
+
+            try
+            {
+                using (MySqlConnection connection = _mySqlConnectionDB.CreateConnection())
+                {
+                    string query = "SELECT * FROM Produtos WHERE DepartamentoCodigo = @Codigo";
+
+                    using (MySqlCommand command = new MySqlCommand(query, connection))
+                    {
+                        command.Parameters.AddWithValue("@Codigo", codigo);
+
+                        connection.Open();
+                        using (MySqlDataReader reader = command.ExecuteReader())
+                        {
+                            while (reader.Read())
+                            {
+                                Produto produto = LerProduto(reader);
+                                produtos.Add(produto);
+                            }
+                        }
+                    }
+                }
+            }
+            catch (Exception ex)
+            {
+                Console.WriteLine($"Erro ao obter produtos por código de departamento: {ex.Message}");
+            }
+
+            return produtos;
+        }
     }
 }

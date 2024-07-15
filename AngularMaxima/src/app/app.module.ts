@@ -17,6 +17,9 @@ import { ProdutoEditarComponent } from './pages/produto/produto-editar/produto-e
 import { ProdutoDetalharComponent } from './pages/produto/produto-detalhar/produto-detalhar.component';
 import { RouterModule } from '@angular/router';
 import { ProdutoDeletarComponent } from './pages/produto/produto-deletar/produto-deletar.component';
+import { DepartamentoCriarComponent } from './pages/departamento/departamento-criar/departamento-criar.component';
+import { DepartamentoEditarComponent } from './pages/departamento/departamento-editar/departamento-editar.component';
+import { DepartamentoDeletarComponent } from './pages/departamento/departamento-deletar/departamento-deletar.component';
 
 @NgModule({
   declarations: [
@@ -30,7 +33,10 @@ import { ProdutoDeletarComponent } from './pages/produto/produto-deletar/produto
     ProdutoEditarComponent,
     ProdutoDetalharComponent,
     DepartamentoComponent,
-    ProdutoDeletarComponent
+    ProdutoDeletarComponent,
+    DepartamentoCriarComponent,
+    DepartamentoEditarComponent,
+    DepartamentoDeletarComponent
   ],
   imports: [
     BrowserModule,

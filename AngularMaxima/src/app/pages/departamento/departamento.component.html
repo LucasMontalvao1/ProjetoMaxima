@@ -2,7 +2,7 @@
 
 <div class="btn-create-espaco">
   <p>
-    <a routerLink="/departamentos/create" class="btn btn-criar">Criar Novo Departamento</a>
+    <a routerLink="/departamento/criar" class="btn btn-criar">Criar Novo Departamento</a>
   </p>
 
   <table class="table table-striped table-hover">
@@ -18,8 +18,8 @@
         <td>{{ departamento.codigo }}</td>
         <td>{{ departamento.descricao }}</td>
         <td>
-          <a routerLink="/departamentos/edit/{{ departamento.codigo }}" class="btn btn-primary">Editar</a>
-          <button (click)="(departamento.codigo)" class="btn btn-danger">Apagar</button>
+          <a [routerLink]="'/departamento/editar/' + departamento.codigo" class="btn btn-primary">Editar</a>
+          <button [routerLink]="'/departamento/deletar/' + departamento.codigo" class="btn btn-danger">Apagar</button>
         </td>
       </tr>
     </tbody>

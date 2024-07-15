@@ -8,6 +8,9 @@ import { ProdutoCriarComponent } from './pages/produto/produto-criar/produto-cri
 import { ProdutoEditarComponent } from './pages/produto/produto-editar/produto-editar.component';
 import { ProdutoDetalharComponent } from './pages/produto/produto-detalhar/produto-detalhar.component';
 import { ProdutoDeletarComponent } from './pages/produto/produto-deletar/produto-deletar.component';
+import { DepartamentoCriarComponent } from './pages/departamento/departamento-criar/departamento-criar.component';
+import { DepartamentoEditarComponent } from './pages/departamento/departamento-editar/departamento-editar.component';
+import { DepartamentoDeletarComponent } from './pages/departamento/departamento-deletar/departamento-deletar.component';
 
 const routes: Routes = [
   { path: '', redirectTo: '/login', pathMatch: 'full'},
@@ -19,6 +22,9 @@ const routes: Routes = [
   { path: 'produto/detalhar/:id', component: ProdutoDetalharComponent},
   { path: 'produto/deletar/:id', component: ProdutoDeletarComponent},
   { path: 'departamento', component: DepartamentoComponent},
+  { path: 'departamento/criar', component: DepartamentoCriarComponent},
+  { path: 'departamento/editar/:codigo', component: DepartamentoEditarComponent},
+  { path: 'departamento/deletar/:codigo', component: DepartamentoDeletarComponent}
 ];
 
 @NgModule({

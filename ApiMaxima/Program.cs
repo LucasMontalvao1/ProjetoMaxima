@@ -1,3 +1,6 @@
+using ApiMaxima.Repository;
+using ApiMaxima.Repository.Interface;
+using ApiMaxima.Service.Interface;
 using ApiMaxima.Services;
 using Microsoft.AspNetCore.Builder;
 using Microsoft.Extensions.DependencyInjection;
@@ -15,7 +18,8 @@ builder.Services.AddSwaggerGen(c =>
 builder.Services.AddSingleton<MySqlConnectionDB>();
 builder.Services.AddScoped<ProdutoService>();
 builder.Services.AddScoped<DepartamentoService>();
-builder.Services.AddScoped<LoginService>();
+builder.Services.AddScoped<IAuthService, AuthService>();
+builder.Services.AddScoped<IAuthRepository, AuthRepository>();
 
 builder.Services.AddCors(options =>
 {

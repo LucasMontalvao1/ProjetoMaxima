@@ -1,0 +1,32 @@
+<app-menu></app-menu>
+
+<div class="container">
+  <div class="form-container">
+    <h2 class="titulo">Editar Departamento</h2>
+    <form [formGroup]="departamentoForm" (ngSubmit)="onSubmit()">
+
+        <div class="form-group">
+          <label for="codigo">Código:</label>
+          <input type="text" class="form-control" id="codigo" formControlName="codigo" placeholder="Código" [disabled]="true">
+          <div *ngIf="departamentoForm.get('codigo')?.invalid && departamentoForm.get('codigo')?.touched" class="invalid-feedback">
+            Código é obrigatório.
+          </div>
+        </div>
+
+        <div class="form-group">
+        <label for="descricao">Descrição:</label>
+        <input type="text" class="form-control" id="descricao" formControlName="descricao" placeholder="Descrição">
+        <div *ngIf="departamentoForm.get('descricao')?.invalid && departamentoForm.get('descricao')?.touched" class="invalid-feedback">
+          Descrição é obrigatória.
+        </div>
+      </div>
+      <button type="submit" class="btn btn-primary mt-3">Salvar</button>
+    </form>
+    <div class="button-group mt-3">
+      <button class="btn btn-secondary" routerLink="/home">Voltar para Home</button>
+      <button class="btn btn-cancelar" routerLink="/departamento">Cancelar</button>
+    </div>
+  </div>
+</div>
+
+<app-footer></app-footer>

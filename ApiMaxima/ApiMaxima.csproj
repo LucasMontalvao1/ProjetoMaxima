@@ -11,6 +11,7 @@
   </ItemGroup>
 
   <ItemGroup>
+    <PackageReference Include="Microsoft.AspNetCore.Mvc.Abstractions" Version="2.2.0" />
     <PackageReference Include="MySql.Data" Version="8.3.0" />
     <PackageReference Include="NSwag.Annotations" Version="14.0.3" />
     <PackageReference Include="Swashbuckle.AspNetCore" Version="6.5.0" />

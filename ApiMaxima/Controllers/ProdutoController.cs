@@ -45,6 +45,17 @@ namespace ApiMaxima.Controllers
             return Ok(produto);
         }
 
+        [HttpGet("departamento/{codigo}")]
+        public IActionResult GetByDepartamentoCodigo(string codigo)
+        {
+            var produtos = _produtoService.ObterProdutosPorDepartamentoCodigo(codigo);
+            if (produtos == null || produtos.Count == 0)
+            {
+                return NotFound($"Nenhum produto encontrado para o departamento com código {codigo}.");
+            }
+            return Ok(produtos);
+        }
+
         [HttpPost]
         public IActionResult Post(List<Produto> produtos)
         {

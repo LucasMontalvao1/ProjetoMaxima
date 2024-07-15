@@ -17,7 +17,6 @@ namespace ProjetoMaxima.Controllers
             _produtosService = produtosService;
         }
 
-        // Index de produtos
         public IActionResult Index()
         {
             try
@@ -31,7 +30,6 @@ namespace ProjetoMaxima.Controllers
             }
         }
 
-        // Criar novos produtos
         public async Task<IActionResult> CreateAsync()
         {
             try
@@ -74,7 +72,6 @@ namespace ProjetoMaxima.Controllers
             return _departamentoService;
         }
 
-        // Editar produto
         public async Task<IActionResult> EditAsync(int? id)
         {
             if (id == null)
@@ -127,8 +124,6 @@ namespace ProjetoMaxima.Controllers
         }
 
 
-
-        // detalhes dos produtos
         public IActionResult Details(int? id)
         {
             if (id == null)

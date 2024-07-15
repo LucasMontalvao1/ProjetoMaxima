@@ -224,14 +224,12 @@ namespace ApiMaxima.Services
                 {
                     await connection.OpenAsync();
 
-                    // Verifica se o departamento pode ser deletado
                     if (await DepartamentoTemProdutosVinculados(connection, codigo))
                     {
                         Console.WriteLine($"Não é possível deletar o departamento {codigo} pois existem produtos vinculados.");
                         return false;
                     }
 
-                    // Caso seja possível deletar, executa a deleção
                     string query = "DELETE FROM Departamentos WHERE Codigo = @Codigo";
                     using (MySqlCommand command = new MySqlCommand(query, connection))
                     {
@@ -275,6 +273,25 @@ namespace ApiMaxima.Services
             catch (Exception ex)
             {
                 Console.WriteLine($"Erro ao verificar produtos vinculados ao departamento: {ex.Message}");
+                throw;
+            }
+        }
+
+        private async Task<bool> ProdutosVinculadosAoDepartamento(MySqlConnection connection, string codigo)
+        {
+            try
+            {
+                string query = "SELECT COUNT(*) FROM Produtos WHERE DepartamentoCodigo = @Codigo";
+                using (MySqlCommand command = new MySqlCommand(query, connection))
+                {
+                    command.Parameters.AddWithValue("@Codigo", codigo);
+                    int count = Convert.ToInt32(await command.ExecuteScalarAsync());
+                    return count > 0;
+                }
+            }
+            catch (Exception ex)
+            {
+                Console.WriteLine($"Erro ao verificar produtos vinculados ao departamento {codigo}: {ex.Message}");
                 throw;
             }
         }

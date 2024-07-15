@@ -22,6 +22,10 @@ export class ProdutoService {
     return this.http.get<Produto>(url);
   }
 
+  getProdutosByDepartamentoCodigo(codigo: string): Observable<Produto[]> {
+    return this.http.get<Produto[]>(`${this.apiUrl}/departamento/${codigo}`);
+  }
+
   createProduto(produto: Produto): Observable<Produto> {
     const body = [{
       codigo: produto.codigo,

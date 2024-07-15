@@ -1,6 +1,7 @@
 ﻿using Microsoft.AspNetCore.Mvc;
 using ApiMaxima.Services;
 using ApiMaxima.Models;
+using ApiMaxima.Service.Interface;
 
 namespace ApiMaxima.Controllers
 {
@@ -8,11 +9,11 @@ namespace ApiMaxima.Controllers
     [Route("[controller]")]
     public class LoginController : ControllerBase
     {
-        private readonly LoginService _loginService;
+        private readonly IAuthService _authService;
 
-        public LoginController(LoginService loginService)
+        public LoginController(IAuthService authService)
         {
-            _loginService = loginService;
+            _authService = authService;
         }
 
         [HttpPost]
@@ -20,7 +21,7 @@ namespace ApiMaxima.Controllers
         {
             try
             {
-                bool isAuthenticated = _loginService.ValidarUsuario(login.Username, login.Password);
+                bool isAuthenticated = _authService.ValidarUsuario(login.Username, login.Password);
 
                 if (isAuthenticated)
                 {

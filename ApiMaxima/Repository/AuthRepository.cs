@@ -1,15 +1,14 @@
-﻿using System;
-using System.Data;
+﻿using ApiMaxima.Repository.Interface;
+using ApiMaxima.Services;
 using MySql.Data.MySqlClient;
-using ApiMaxima.Models;
 
-namespace ApiMaxima.Services
+namespace ApiMaxima.Repository
 {
-    public class LoginService
+    public class AuthRepository : IAuthRepository
     {
         private readonly MySqlConnectionDB _mySqlConnectionDB;
 
-        public LoginService(MySqlConnectionDB mySqlConnectionDB)
+        public AuthRepository(MySqlConnectionDB mySqlConnectionDB)
         {
             _mySqlConnectionDB = mySqlConnectionDB;
         }
